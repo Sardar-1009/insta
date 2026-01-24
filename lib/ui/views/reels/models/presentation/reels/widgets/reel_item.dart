@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../data/models/reel_model.dart';
+// import '../../../data/models/reel_model.dart';
+import '../../../reel_model.dart';
 
 class ReelItem extends StatefulWidget {
   final ReelModel reel;

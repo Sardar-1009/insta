@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import '../ui/views/ shell/shell_view.dart';
 import 'theme.dart';
-import '../ui/views/shell/shell_view.dart';
+
 
 class InstagramCloneApp extends StatelessWidget {
   const InstagramCloneApp({super.key});

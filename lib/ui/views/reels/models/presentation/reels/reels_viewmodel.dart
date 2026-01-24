@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../data/models/reel_model.dart';
+// import '../../data/models/reel_model.dart';
+import '../../reel_model.dart';
 
 class ReelsViewModel extends ChangeNotifier {
   final List<ReelModel> reels = [

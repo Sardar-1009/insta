@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../home/home_view.dart';
-import '../direct/direct_view.dart';
-import '../search/search_view.dart';
-import '../reels/reels_view.dart';
-import '../profile/profile_view.dart';
+import '../direct/direct_page.dart';
+import '../search/search_page.dart';
 
 import 'shell_viewmodel.dart';
 
@@ -19,10 +17,10 @@ class ShellView extends StatelessWidget {
       builder: (context, vm, _) {
         final pages = <Widget>[
           const HomeView(),
-          const DirectView(),
-          const SearchView(),
-          const ReelsView(),
-          const ProfileView(),
+          // const DirectView(),
+          // const SearchView(),
+          // const ReelsView(),
+          // const ProfileView(),
         ];
 
         return Scaffold(

@@ -1,21 +1,7 @@
+// lib/ui/views/profile/profile_insta.dart
+
+// Удалите 'main()' и 'MyApp' отсюда. Оставьте только нужные импорты и виджеты.
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      home: const ProfilePage(),
-    );
-  }
-}
 
 // ================== ProfilePage ==================
 class ProfilePage extends StatelessWidget {
@@ -23,6 +9,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ... весь ваш код для ProfilePage, ProfileInfo и т.д. остается здесь без изменений
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -67,8 +54,10 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
+
 // ================== ProfileInfo ==================
 class ProfileInfo extends StatelessWidget {
+  // ... ваш код
   const ProfileInfo({super.key});
 
   @override
@@ -159,6 +148,7 @@ class ProfileInfo extends StatelessWidget {
   }
 }
 
+// ... и остальные ваши виджеты (TabRow, PostsGrid и т.д.)
 // ================== Строка вкладок ==================
 class TabRow extends StatelessWidget {
   const TabRow({super.key});
@@ -185,7 +175,7 @@ class PostsGrid extends StatelessWidget {
     return GridView.builder(
       padding: EdgeInsets.zero,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3, mainAxisSpacing: 2, crossAxisSpacing: 2
+          crossAxisCount: 3, mainAxisSpacing: 2, crossAxisSpacing: 2
       ),
       itemCount: 6,
       itemBuilder: (context, index) {
@@ -206,7 +196,7 @@ class ReelsGrid extends StatelessWidget {
     return GridView.builder(
       padding: EdgeInsets.zero,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3, mainAxisSpacing: 2, crossAxisSpacing: 2
+          crossAxisCount: 3, mainAxisSpacing: 2, crossAxisSpacing: 2
       ),
       itemCount: 6,
       itemBuilder: (context, index) {
@@ -227,7 +217,7 @@ class TaggedGrid extends StatelessWidget {
     return GridView.builder(
       padding: EdgeInsets.zero,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3, mainAxisSpacing: 2, crossAxisSpacing: 2
+          crossAxisCount: 3, mainAxisSpacing: 2, crossAxisSpacing: 2
       ),
       itemCount: 6,
       itemBuilder: (context, index) {
