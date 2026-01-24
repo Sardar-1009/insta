@@ -12,6 +12,9 @@ class ProfileService {
 
   Future<List<String>> fetchMyPosts() async {
     await Future.delayed(const Duration(milliseconds: 250));
-    return List.generate(21, (i) => 'https://picsum.photos/600/600?random=${i + 300}');
+    return List.generate(
+      21,
+          (i) => 'https://picsum.photos/600/600?random=${i + 300}',
+    );
   }
 }
