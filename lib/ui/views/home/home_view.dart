@@ -20,18 +20,9 @@ class HomeView extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w700),
             ),
             actions: [
-              IconButton(
-                onPressed: vm.onCreatePost,
-                icon: const Icon(Icons.add_box_outlined),
-              ),
-              IconButton(
-                onPressed: vm.onOpenActivity,
-                icon: const Icon(Icons.favorite_border),
-              ),
-              IconButton(
-                onPressed: vm.onOpenMessages,
-                icon: const Icon(Icons.chat_bubble_outline),
-              ),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.add_box_outlined)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.favorite_border)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.chat_bubble_outline)),
             ],
           ),
           body: vm.isBusy
@@ -40,24 +31,15 @@ class HomeView extends StatelessWidget {
             onRefresh: vm.refresh,
             child: CustomScrollView(
               slivers: [
-                // Stories
                 SliverToBoxAdapter(
                   child: StoryList(stories: vm.stories),
                 ),
-
-                // Posts
-                if (vm.posts.isEmpty)
-                  const SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Center(child: Text('No posts')),
-                  )
-                else
-                  SliverList.builder(
-                    itemCount: vm.posts.length,
-                    itemBuilder: (context, index) {
-                      return PostCard(post: vm.posts[index]);
-                    },
-                  ),
+                SliverList.builder(
+                  itemCount: vm.posts.length,
+                  itemBuilder: (_, i) {
+                    return PostCard(post: vm.posts[i]);
+                  },
+                ),
               ],
             ),
           ),

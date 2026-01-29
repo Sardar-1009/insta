@@ -17,11 +17,8 @@ class HomeViewModel extends BaseViewModel {
         _repo.getStories(),
         _repo.getPosts(),
       ]);
-
       stories = res[0] as List<Story>;
       posts = res[1] as List<Post>;
-    } catch (_) {
-      // можно добавить обработку ошибок/снэкбар позже
     } finally {
       setBusy(false);
       notifyListeners();
@@ -29,9 +26,4 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future<void> refresh() => init();
-
-  // Заглушки под будущие действия
-  void onCreatePost() {}
-  void onOpenActivity() {}
-  void onOpenMessages() {}
 }
