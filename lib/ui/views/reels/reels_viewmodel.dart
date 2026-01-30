@@ -1,33 +1,37 @@
-import 'package:stacked/stacked.dart';
-import '../../../app/locator.dart';
-import '../../../core/repositories/reels_repository.dart';
+import 'package:flutter/material.dart';
 
-class ReelsViewModel extends BaseViewModel {
-  final ReelsRepository _repo = locator<ReelsRepository>();
+class ReelsViewModel extends ChangeNotifier {
+  final List<String> images = [
+    'https://picsum.photos/800/1400?1',
+    'https://picsum.photos/800/1400?2',
+    'https://picsum.photos/800/1400?3',
+    'https://picsum.photos/800/1400?4',
+    'https://picsum.photos/800/1400?5',
+    'https://picsum.photos/800/1400?6',
+    'https://picsum.photos/800/1400?7',
+  ];
 
-  List<String> images = [];
+  final Map<int, bool> liked = {};
+  final Map<int, int> likes = {};
+  final Map<int, List<String>> comments = {};
 
-  Future<void> init() async {
-    setBusy(true);
-    try {
-      images = await _repo.getReelsImages();
-    } finally {
-      setBusy(false);
-      notifyListeners();
-    }
+  int realIndex(int page) => page % images.length;
+
+  void toggleLike(int page) {
+    final i = realIndex(page);
+    liked[i] = !(liked[i] ?? false);
+    likes[i] = (likes[i] ?? 12000) + (liked[i]! ? 1 : -1);
+    notifyListeners();
   }
 
-  Future<void> refresh() => init();
-
-  void like(int index) {
-    // TODO: лайк логика
+  List<String> getComments(int page) {
+    return comments[realIndex(page)] ?? [];
   }
 
-  void comment(int index) {
-    // TODO: комменты
-  }
-
-  void share(int index) {
-    // TODO: шаринг
+  void addComment(int page, String text) {
+    final i = realIndex(page);
+    comments.putIfAbsent(i, () => []);
+    comments[i]!.add(text);
+    notifyListeners();
   }
 }
