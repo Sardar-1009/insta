@@ -4,13 +4,17 @@ import 'avatar.dart';
 
 class StoryList extends StatelessWidget {
   final List<Story> stories;
-  const StoryList({super.key, required this.stories});
+  final void Function(Story story)? onStoryTap;
+
+  const StoryList({
+    super.key,
+    required this.stories,
+    this.onStoryTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    if (stories.isEmpty) {
-      return const SizedBox(height: 104);
-    }
+    if (stories.isEmpty) return const SizedBox(height: 104);
 
     return SizedBox(
       height: 104,
@@ -21,26 +25,31 @@ class StoryList extends StatelessWidget {
         separatorBuilder: (_, __) => const SizedBox(width: 10),
         itemBuilder: (_, i) {
           final s = stories[i];
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Avatar(
-                url: s.user.avatarUrl,
-                size: 62,
-                hasRing: !s.isViewed,
-              ),
-              const SizedBox(height: 6),
-              SizedBox(
-                width: 72,
-                child: Text(
-                  s.user.username,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 12),
+
+          return InkWell(
+            borderRadius: BorderRadius.circular(16),
+            onTap: onStoryTap == null ? null : () => onStoryTap!(s),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Avatar(
+                  url: s.user.avatarUrl,
+                  size: 62,
+                  hasRing: !s.isViewed,
                 ),
-              ),
-            ],
+                const SizedBox(height: 6),
+                SizedBox(
+                  width: 72,
+                  child: Text(
+                    s.user.username,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),

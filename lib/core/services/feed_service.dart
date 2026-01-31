@@ -23,9 +23,24 @@ class FeedService {
     );
 
     return const [
-      Story(id: 's1', user: u1, isViewed: false),
-      Story(id: 's2', user: u2, isViewed: true),
-      Story(id: 's3', user: u3, isViewed: false),
+      Story(
+        id: 's1',
+        user: u1,
+        isViewed: false,
+        mediaUrl: 'https://picsum.photos/900/1600?random=701',
+      ),
+      Story(
+        id: 's2',
+        user: u2,
+        isViewed: true,
+        mediaUrl: 'https://picsum.photos/900/1600?random=702',
+      ),
+      Story(
+        id: 's3',
+        user: u3,
+        isViewed: false,
+        mediaUrl: 'https://picsum.photos/900/1600?random=703',
+      ),
     ];
   }
 
@@ -34,7 +49,7 @@ class FeedService {
 
     const u1 = User(
       id: 'u1',
-      username: 'salikh',
+      username: 'alikh',
       avatarUrl: 'https://i.pravatar.cc/150?img=12',
     );
     const u2 = User(
@@ -59,6 +74,14 @@ class FeedService {
         caption: 'MVVM + чистая архитектура — кайф.',
         likes: 982,
         createdAt: DateTime.now().subtract(const Duration(days: 1, hours: 2)),
+      ),
+      Post(
+        id: 'p3',
+        user: u1,
+        imageUrl: 'https://picsum.photos/900/900?random=44',
+        caption: 'Сторисы уже можно листать 😄',
+        likes: 431,
+        createdAt: DateTime.now().subtract(const Duration(hours: 9)),
       ),
     ];
   }

@@ -6,7 +6,27 @@ import 'avatar.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
-  const PostCard({super.key, required this.post});
+
+  // ✅ добавь поля
+  final bool isLiked;
+  final bool isSaved;
+
+  // ✅ добавь коллбеки
+  final VoidCallback onLike;
+  final VoidCallback onComment;
+  final VoidCallback onShare;
+  final VoidCallback onSave;
+
+  const PostCard({
+    super.key,
+    required this.post,
+    required this.isLiked,
+    required this.isSaved,
+    required this.onLike,
+    required this.onComment,
+    required this.onShare,
+    required this.onSave,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +48,10 @@ class PostCard extends StatelessWidget {
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
               ),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.more_vert),
+              ),
             ],
           ),
         ),
@@ -52,11 +75,26 @@ class PostCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: Row(
             children: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.favorite_border)),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.chat_bubble_outline)),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.send_outlined)),
+              IconButton(
+                onPressed: onLike,
+                icon: Icon(
+                  isLiked ? Icons.favorite : Icons.favorite_border,
+                  color: isLiked ? Colors.red : null,
+                ),
+              ),
+              IconButton(
+                onPressed: onComment,
+                icon: const Icon(Icons.chat_bubble_outline),
+              ),
+              IconButton(
+                onPressed: onShare,
+                icon: const Icon(Icons.send_outlined),
+              ),
               const Spacer(),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.bookmark_border)),
+              IconButton(
+                onPressed: onSave,
+                icon: Icon(isSaved ? Icons.bookmark : Icons.bookmark_border),
+              ),
             ],
           ),
         ),
@@ -65,7 +103,7 @@ class PostCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Text(
-            '${post.likes} likes',
+            '${post.likes + (isLiked ? 1 : 0)} likes',
             style: const TextStyle(fontWeight: FontWeight.w600),
           ),
         ),
